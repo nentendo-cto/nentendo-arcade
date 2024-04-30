@@ -45,7 +45,7 @@ window.onload = function() {
 	// }
 	
 	// And this is the select box for selecting a WebGL shader
-	shaderValue = "CRT.xml";
+	shaderValue = "shaders/v1.0/CRT.xml";
 	console.log( "Loading shader " + shaderValue );
 	Gui.App.loadShaderFromUrl( shaderValue );
 	// sel = $('#shaderListComboBox');
