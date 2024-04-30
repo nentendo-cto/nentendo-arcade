@@ -26,11 +26,13 @@ function getParameterByName(name) {
 
 
 window.onload = function() {
+	let romValue;
+	let shaderValue;
 
 	// This allows a list box to be on the page to load a given nes file local to the site
-	value = "roms/Super Mario Bros (E).nes.zip";
-	console.log( "Loading ROM " + value );
-	Gui.App.loadRomFromUrl( value );
+	romValue = "roms/Super Mario Bros (E).nes.zip";
+	console.log( "Loading ROM " + romValue );
+	Gui.App.loadRomFromUrl( romValue );
 	// var sel = $('#loadGameComboBox');
 	// if ( sel ) {
 	// 	sel['change'](function(){
@@ -43,9 +45,9 @@ window.onload = function() {
 	// }
 	
 	// And this is the select box for selecting a WebGL shader
-		value = "v1.0/CRT.xml";
-		console.log( "Loading shader " + value );
-		Gui.App.loadShaderFromUrl( value );
+		shaderValue = "v1.0/CRT.xml";
+		console.log( "Loading shader " + shaderValue );
+		Gui.App.loadShaderFromUrl( shaderValue );
 	// sel = $('#shaderListComboBox');
 	// if ( sel ) {
 	// 	sel['change'](function(){
