@@ -36,7 +36,16 @@
 			<li>V - Start button</li>
 			<li>Arrow keys - DPAD</li>
 			</ul>
-			<p>Pete Ward, 2014 [peteward44 at gmail dot com]</p>
+			<!-- <p>Pete Ward, 2014 [peteward44 at gmail dot com]</p> -->
+			<p>
+				<select type="text" list="gamesList" id="loadGameComboBox">
+					<datalist id="gamesList">
+						<option value="">Select a ROM file to load...</option>
+						<!-- <option value="roms/Super Mario Bros 3 (U) (PRG 0).nes.zip">Super Mario Bros 3</option> -->
+						<option value="roms/Super Mario Bros (E).nes.zip">Super Mario Bros</option>
+				</datalist>
+			</select>
+			</p>
 			<div id="postProcessingDiv" style="display:none;">
 			<p>Post processing effects:</p>
 			<p>
