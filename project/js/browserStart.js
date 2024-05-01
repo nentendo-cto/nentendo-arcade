@@ -60,11 +60,14 @@ function playRom() {
 	if (loadGameComboBox.value) {
 		console.log("Playing ROM: " + loadGameComboBox.value);
 		// playButton.hidden = true;
-		// Perform play action here, e.g., Gui.App.loadRomFromUrl(loadGameComboBox.value);
+		// Perform play action here, e.g., 
+		Gui.App.loadRomFromUrl(loadGameComboBox.value);
 	} else {
 		console.log("No ROM selected.");
 		// playButton.hidden = false;
 		// Provide feedback to the user that no ROM is selected
+		loadGameComboBox.value = "roms/Super Mario Bros (E).nes.zip";
+		Gui.App.loadRomFromUrl(loadGameComboBox.value);
 	}
 }
 
