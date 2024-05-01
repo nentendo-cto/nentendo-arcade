@@ -74,7 +74,7 @@ function getParameterByName(name) {
 // playRom();
 
 // Event listener to call playRom() when the play button is clicked
-document.getElementById("playButton").addEventListener("click", playRom);
+// document.getElementById("playButton").addEventListener("click", playRom);
 
 window.onload = function() {
 	// let romValue;
@@ -93,9 +93,7 @@ window.onload = function() {
 				Gui.App.loadRomFromUrl( value );
 			} else {
 				// If nothing is selected, provide a default value to load
-				var defaultValue = "roms/Super Mario Bros (E).nes.zip";
-				console.log("No ROM selected. Loading default ROM " + defaultValue);
-				Gui.App.loadRomFromUrl(defaultValue);
+				console.log("No ROM selected.");
 			}
 		});
 	}
