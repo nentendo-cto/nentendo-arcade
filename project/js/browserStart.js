@@ -40,6 +40,11 @@ window.onload = function() {
 			if ( value.length > 0 ) {
 				console.log( "Loading ROM " + value );
 				Gui.App.loadRomFromUrl( value );
+			} else {
+				// If nothing is selected, provide a default value to load
+				var defaultValue = "roms/Super Mario Bros (E).nes.zip";
+				console.log("No ROM selected. Loading default ROM " + defaultValue);
+				Gui.App.loadRomFromUrl(defaultValue);
 			}
 		});
 	}
@@ -56,7 +61,10 @@ window.onload = function() {
 				console.log( "Loading shader " + value );
 				Gui.App.loadShaderFromUrl( value );
 			} else {
-				Gui.App.loadShaderFromUrl( null );
+				// If nothing is selected, provide a default value for the shader
+				var defaultValue = "shaders/v1.0/CRT.xml";
+				console.log("No shader selected. Loading default shader " + defaultValue);
+				Gui.App.loadShaderFromUrl(defaultValue);
 			}
 		});
 	}
