@@ -43,7 +43,7 @@
 				<li>V - Start button</li>
 				<li>Arrow keys - DPAD</li>
 			</ul>
-			<p>
+			<p style="display:none;">
 				<select type="text" list="gamesList" id="loadGameComboBox">
 					<datalist id="gamesList">
 						<option value="">Select a ROM file to load...</option>
@@ -62,16 +62,14 @@
 			</select>
 			</p> -->
 			<div id="postProcessingDiv" style="display:none;">
-			<p>Post processing effects:</p>
-			<p>
-				<select type="text" list="shaderList" id="shaderListComboBox">
-					<datalist id="shaderList">
-						<option value="v1.0/CRT.xml">None</option>
-						<option disabled>------------</option>
-						<option value="v1.0/CRT.xml" selected>CRT</option>
-					</datalist>
-				</select>
-				</p> 
+				<p>Post processing effects:</p>
+				<p>
+					<select type="text" list="shaderList" id="shaderListComboBox">
+						<datalist id="shaderList">
+							<option value="shaders/v1.0/CRT.xml" selected>CRT</option>
+						</datalist>
+					</select>
+				</p>
 			</div>
 		</div>
 		<div id="content" class="normal"
