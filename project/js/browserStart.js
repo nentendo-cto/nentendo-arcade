@@ -87,12 +87,15 @@ window.onload = function() {
 	var sel = $('#loadGameComboBox');
 	if ( sel ) {
 		sel['change'](function(){
+			var light = document.getElementById("light");
 			var value = $(this)['val']();
 			if ( value.length > 0 ) {
+				light.style.display = "block";
 				console.log( "Loading ROM " + value );
 				Gui.App.loadRomFromUrl( value );
 			} else {
 				// If nothing is selected, provide a default value to load
+				light.style.display = "none";
 				console.log("No ROM selected.");
 			}
 		});

@@ -3,20 +3,139 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<title>Nentendo CTO</title>
 	<style>
-        /* Style for the button */
-        .buy-button {
-            background-color: red;
-            color: white;
-            border: none;
-            border-radius: 20px; /* Adjust the border-radius to change the roundness of the corners */
-            padding: 10px 20px; /* Adjust the padding to change the size of the button */
-            font-family: "Comic Sans MS", cursive; /* Use Comic Sans MS font */
-            font-size: 16px;
-            cursor: pointer;
+		#body {
+			margin: 0;
+		}
+		/* Style for the button */
+		.buy-button {
+			background-color: red;
+			color: white;
+			border: none;
+			border-radius: 20px;
+			/* Adjust the border-radius to change the roundness of the corners */
+			padding: 10px 20px;
+			/* Adjust the padding to change the size of the button */
+			font-family: "Comic Sans MS", cursive;
+			/* Use Comic Sans MS font */
+			font-size: 16px;
+			cursor: pointer;
+		}
+
+		.mobileSelect {
+			position: absolute;
+			font-size: x-large;
+			top: 0.5%;
+			left: 32%;
+		}
+
+		.mobileCanvas {
+			position: absolute;
+			top: 11%;
+			left: 20%;
+		}
+
+		#controller {
+			width: 100%;
+			/* Adjust as needed */
+			height: auto;
+			/* Allows the height to adjust according to the width */
+			/* max-width: 320px; */
+			/* Adjust as needed */
+			margin: 0 auto;
+			/* Centers the controller */
+			position: relative;
+		}
+
+		#gameController {
+			object-fit: contain;
+			max-width: 100%;
+		}
+
+		#light {
+			position: absolute;
+			top: 20.2%;
+			left: 6%;
+			width: 8%;
+			height: auto;
+			display: none;
+		}
+
+		.button {
+			position: absolute;
+			width: 20%;
+			height: auto;
+			padding-top: 20%;
+			background-color: rgba(0, 0, 0, 10%);
+			border-radius: 50%;
+		}
+
+		#dpadUp {
+            top: 53%;
+            left: 17%;
         }
-    </style>
+
+        #dpadDown {
+            top: 69%;
+            left: 17%;
+        }
+
+        #dpadLeft {
+            top: 61%;
+            left: 1%;
+        }
+
+        #dpadRight {
+            top: 61%;
+            left: 32%;
+        }
+
+        #buttonA {
+            top: 57.5%;
+            left: 73.2%;
+        }
+
+        #buttonB {
+            top: 62.5%;
+            left: 54.5%;
+        }
+
+        #start {            
+            top: 81%;
+            left: 56%;
+        }
+
+        #select {
+            top: 81%;
+            left: 26%;
+        }
+
+		/* Default styles for both elements */
+		.mobile-only {
+			display: none;
+			/* Hide by default */
+		}
+
+		.desktop-only {
+			display: block;
+			/* Show by default */
+		}
+
+		/* Media query for mobile devices */
+		@media screen and (max-width: 768px) {
+			.mobile-only {
+				display: block;
+				/* Show on mobile */
+			}
+
+			.desktop-only {
+				display: none;
+				/* Hide on mobile */
+			}
+		}
+	</style>
 	<meta charset="utf-8" />
 	<meta http-equiv="Cache-Control" content="no-store" /> <!-- stops chrome from caching -->
 
@@ -44,13 +163,14 @@
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));</script>
 
-	<div id="content" class="normal" style="width:100%; height:100%; display:inline-block;">
-		<div id="infoPanel" class="infoPanel" style="color: white;">
-			<img src="images/logo.png" style="width: 40%; height: auto;"></img>
+	<!-- Desktop Content -->
+	<div id="content" class="desktop-only" style="width:100%; height:100%;">
+		<div id="infoPanel" class="infoPanel desktop-only" style="color: white;">
+			<img src="images/logo.png" class="desktop-only" style="width: 40%; height: auto;"></img>
 			<!-- <h1>Nentendo</h1> -->
 			<!-- <p>Drag a ROM file (can be zipped) onto the screen to load a game.</p> -->
-			<p>Keys:</p>
-			<ul style="text-shadow: 0 0 2px #000000;">
+			<p class="desktop-only">Keys:</p>
+			<ul class="desktop-only" style="text-shadow: 0 0 2px #000000;">
 				<li>A button - Space or Z</li>
 				<li>B button - X or F</li>
 				<li>Select button - C or Shift</li>
@@ -60,22 +180,23 @@
 			<!-- Button to play ROM -->
 			<!-- <button id="playButton">Pley</button> -->
 			<!-- <p>Pete Ward, 2014 [peteward44 at gmail dot com]</p> -->
-			<p>
+			<p class="desktop-only">
 				<select type="text" list="gamesList" id="loadGameComboBox">
 					<datalist id="gamesList">
 						<option value="">Select a ROM file to load...</option>
 						<option value="roms/Super Mario Bros (E).nes.zip">Sooper Merio Bros</option>
 						<option value="roms/Super Mario Bros 3 (U) (PRG 0).nes.zip">Sooper Merio Bros 3</option>
 						<option value="roms/Legend of Zelda, The (U) (PRG 0).nes.zip">The Legend of Zeldey</option>
-						<option value="roms/Zelda 2 - The Adventure of Link (U).nes.zip">Zeldey 2 - Adventure of Lenk</option>
+						<option value="roms/Zelda 2 - The Adventure of Link (U).nes.zip">Zeldey 2 - Adventure of Lenk
+						</option>
 						<option value="roms/Metroid (U).nes.zip">Meetroid</option>
 						<option value="roms/Mega Man (U).nes.zip">Megu Men</option>
 						<option value="roms/Mike Tyson's Punch-Out!! (U).nes.zip">Meke Tysen's Punch-Out!!</option>
 						<option value="roms/Snake Rattle'n Roll (U).nes.zip">Snek Rattle'n Reel</option>
-				</datalist>
-			</select>
+					</datalist>
+				</select>
 			</p>
-			<div id="postProcessingDiv" style="display:none;">
+			<div id="postProcessingDiv" style="display:none;" class="desktop-only">
 				<p>Effects:</p>
 				<p">
 					<select type="text" list="shaderList" id="shaderListComboBox">
@@ -84,23 +205,24 @@
 							<option value="v1.0/CRT.xml">Old Skool Vibes</option>
 						</datalist>
 					</select>
-				</p>
+					</p>
 			</div>
 			<!-- Button to toggle post processing -->
 			<!-- <button id="togglePostProcessingButton">Oldskool Off</button> -->
-		    <p style="padding: 20px;" >
-				<a href="https://dexscreener.com/solana/eh4vlnc5bczg2jtgb1dwcb8krmmzbat8rtyted2z5g8z" class="buy-button">Buy $NENT</a>
+			<p class="desktop-only" style="padding: 20px;">
+				<a href="https://dexscreener.com/solana/eh4vlnc5bczg2jtgb1dwcb8krmmzbat8rtyted2z5g8z"
+					class="buy-button">Buy $NENT</a>
 			</p>
-			<p style="padding: 20px">
+			<p class="desktop-only" style="padding: 20px">
 				<a href="https://t.me/NentendoCTO" class="buy-button">Telegram</a>
 			</p>
 		</div>
-		<div id="content" class="normal"
-			style="width:100%; height:100%; display:inline-block; background-image: url('images/ArcadeBazel2.png'); background-size: contain; background-position: center; background-repeat: no-repeat; box-sizing: border-box;">
+		<div id="content" class="desktop-only"
+			style="width:100%; height:100%; background-image: url('images/ArcadeBazel2.png'); background-size: contain; background-position: center; background-repeat: no-repeat; box-sizing: border-box;">
 			<div id="canvasWrapper" class="wrapper">
 			</div>
 		</div>
-		<div id="controlBar" class="controlBar">
+		<div id="controlBar" class="controlBar" class="desktop-only">
 			<div id="debugBar" class="ui-widget-header ui-corner-all">
 				<button class="controlBarButton" id="debugControlBar_playOneFrameButton"></button>
 				<div class="controlBarSeperator"></div>
@@ -243,6 +365,68 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- Mobile Content -->
+	<div id="controller" class="mobile-only">
+		<img src="images/NentMobile.png" class="mobile-only" alt="Game Controller" id="gameController">
+		<select type="text" class="mobileSelect mobile-only" list="gamesList" id="loadGameComboBox">
+			<datalist id="gamesList">
+				<option value="">Select a ROM file to load...</option>
+				<option value="roms/Super Mario Bros (E).nes.zip">Sooper Merio Bros</option>
+				<option value="roms/Super Mario Bros 3 (U) (PRG 0).nes.zip">Sooper Merio Bros 3</option>
+				<option value="roms/Legend of Zelda, The (U) (PRG 0).nes.zip">The Legend of Zeldey</option>
+				<option value="roms/Zelda 2 - The Adventure of Link (U).nes.zip">Zeldey 2 - Adventure of Lenk</option>
+				<option value="roms/Metroid (U).nes.zip">Meetroid</option>
+				<option value="roms/Mega Man (U).nes.zip">Megu Men</option>
+				<option value="roms/Mike Tyson's Punch-Out!! (U).nes.zip">Meke Tysen's Punch-Out!!</option>
+				<option value="roms/Snake Rattle'n Roll (U).nes.zip">Snek Rattle'n Reel</option>
+			</datalist>
+		</select>
+		<img src="images/NentboyON.png" class="mobile-only" id="light"></img>
+		<div id="content" class="mobileCanvas mobile-only">
+			<div id="canvasWrapper" class="wrapper"></div>
+		</div>
+		<div class="mobile-only">
+			<div id="dpadUp" class="button"></div>
+			<div id="dpadDown" class="button"></div>
+			<div id="dpadLeft" class="button"></div>
+			<div id="dpadRight" class="button"></div>
+			<div id="buttonA" class="button"></div>
+			<div id="buttonB" class="button"></div>
+			<div id="start" class="button"></div>
+			<div id="select" class="button"></div>
+		</div>
+	</div>
+	<div id="postProcessingDiv" style="display:none;" class="mobile-only">
+		<p>Effects:</p>
+		<p>
+			<select type="text" list="shaderList" id="shaderListComboBox">
+				<datalist id="shaderList">
+					<option value="">None</option>
+					<option value="v1.0/Dot 'n Bloom'.xml">Old Skool Vibes</option>
+				</datalist>
+			</select>
+			</p>
+	</div>
+	<p style="padding: 20px;text-align:center" class="mobile-only">
+		<a href="https://dexscreener.com/solana/eh4vlnc5bczg2jtgb1dwcb8krmmzbat8rtyted2z5g8z" class="buy-button" style="padding:20px;">Buy $NENT</a>
+		<a href="https://t.me/NentendoCTO" class="buy-button" style="padding:20px;margin-left:20px">Telegram</a>
+	</p>
+
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			const buttons = document.querySelectorAll('.button');
+
+			buttons.forEach(button => {
+				button.addEventListener('click', function () {
+					const buttonId = button.id;
+					console.log(`Clicked ${buttonId}`);
+					// Add your logic here for what happens when each button is clicked
+				});
+			});
+		});
+	</script>
 
 	<!-- build:js js/nes.components.min.js -->
 	<script type="text/javascript" src="js/polyfills/arrayPolyfills.js"></script>
