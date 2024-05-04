@@ -9,6 +9,7 @@
 		#body {
 			margin: 0;
 		}
+
 		/* Style for the button */
 		.buy-button {
 			background-color: red;
@@ -24,17 +25,21 @@
 			cursor: pointer;
 		}
 
+		#gameContainer {
+			background-image: url('images/ArcadeBazel2.png');
+			background-size: contain;
+			background-position: center;
+			background-repeat: no-repeat;
+			box-sizing: border-box;
+			display: flex;
+			justify-content: center;
+		}
+
 		.mobileSelect {
 			position: absolute;
 			font-size: x-large;
 			top: 0.5%;
 			left: 32%;
-		}
-
-		.mobileCanvas {
-			position: absolute;
-			top: 11%;
-			left: 20%;
 		}
 
 		#controller {
@@ -73,44 +78,44 @@
 		}
 
 		#dpadUp {
-            top: 53%;
-            left: 17%;
-        }
+			top: 53%;
+			left: 17%;
+		}
 
-        #dpadDown {
-            top: 69%;
-            left: 17%;
-        }
+		#dpadDown {
+			top: 69%;
+			left: 17%;
+		}
 
-        #dpadLeft {
-            top: 61%;
-            left: 1%;
-        }
+		#dpadLeft {
+			top: 61%;
+			left: 1%;
+		}
 
-        #dpadRight {
-            top: 61%;
-            left: 32%;
-        }
+		#dpadRight {
+			top: 61%;
+			left: 32%;
+		}
 
-        #buttonA {
-            top: 57.5%;
-            left: 73.2%;
-        }
+		#buttonA {
+			top: 57.5%;
+			left: 73.2%;
+		}
 
-        #buttonB {
-            top: 62.5%;
-            left: 54.5%;
-        }
+		#buttonB {
+			top: 62.5%;
+			left: 54.5%;
+		}
 
-        #start {            
-            top: 81%;
-            left: 56%;
-        }
+		#start {
+			top: 81%;
+			left: 56%;
+		}
 
-        #select {
-            top: 81%;
-            left: 26%;
-        }
+		#select {
+			top: 81%;
+			left: 26%;
+		}
 
 		/* Default styles for both elements */
 		.mobile-only {
@@ -123,6 +128,15 @@
 			/* Show by default */
 		}
 
+		#canvasWrapper {
+			position: relative;
+			top: none;
+			left: none;
+			max-width: 1024;
+			display: flex;
+			justify-content: center;
+		}
+
 		/* Media query for mobile devices */
 		@media screen and (max-width: 768px) {
 			.mobile-only {
@@ -133,6 +147,25 @@
 			.desktop-only {
 				display: none;
 				/* Hide on mobile */
+			}
+
+			#canvasWrapper {
+				position: absolute;
+				top: 11%;
+				left: 20%;
+				max-width: 200px;
+				display: flex;
+				justify-content: normal;
+			}
+
+			#gameContainer {
+				background-image: none;
+				background-size: contain;
+				background-position: center;
+				background-repeat: no-repeat;
+				box-sizing: border-box;
+				display: flex;
+				justify-content: center;
 			}
 		}
 	</style>
@@ -162,7 +195,9 @@
 			js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.0&appId=310800822454793";
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));</script>
-
+	<div id="gameContainer" style="width:100%;">
+		<div id="canvasWrapper" class="wrapper" style="width:100%;"></div>
+	</div>
 	<!-- Desktop Content -->
 	<div id="content" class="desktop-only" style="width:100%; height:100%;">
 		<div id="infoPanel" class="infoPanel desktop-only" style="color: white;">
@@ -216,11 +251,6 @@
 			<p class="desktop-only" style="padding: 20px">
 				<a href="https://t.me/NentendoCTO" class="buy-button">Telegram</a>
 			</p>
-		</div>
-		<div id="content" class="desktop-only"
-			style="width:100%; height:100%; background-image: url('images/ArcadeBazel2.png'); background-size: contain; background-position: center; background-repeat: no-repeat; box-sizing: border-box;">
-			<div id="canvasWrapper" class="wrapper">
-			</div>
 		</div>
 		<div id="controlBar" class="controlBar" class="desktop-only">
 			<div id="debugBar" class="ui-widget-header ui-corner-all">
@@ -383,9 +413,9 @@
 			</datalist>
 		</select>
 		<img src="images/NentboyON.png" class="mobile-only" id="light"></img>
-		<div id="content" class="mobileCanvas mobile-only">
+		<!-- <div id="content" class="mobileCanvas mobile-only">
 			<div id="canvasWrapper" class="wrapper"></div>
-		</div>
+		</div> -->
 		<div class="mobile-only">
 			<div id="dpadUp" class="button"></div>
 			<div id="dpadDown" class="button"></div>
@@ -406,14 +436,20 @@
 					<option value="v1.0/Dot 'n Bloom'.xml">Old Skool Vibes</option>
 				</datalist>
 			</select>
-			</p>
+		</p>
 	</div>
 	<p style="padding: 20px;text-align:center" class="mobile-only">
-		<a href="https://dexscreener.com/solana/eh4vlnc5bczg2jtgb1dwcb8krmmzbat8rtyted2z5g8z" class="buy-button" style="padding:20px;">Buy $NENT</a>
+		<a href="https://dexscreener.com/solana/eh4vlnc5bczg2jtgb1dwcb8krmmzbat8rtyted2z5g8z" class="buy-button"
+			style="padding:20px;">Buy $NENT</a>
 		<a href="https://t.me/NentendoCTO" class="buy-button" style="padding:20px;margin-left:20px">Telegram</a>
 	</p>
 
 
+	<script>
+		var canvas = document.getElementById('content');
+		var heightRatio = 1.5;
+		canvas.height = canvas.width * heightRatio;
+	</script>
 	<script>
 		document.addEventListener('DOMContentLoaded', function () {
 			const buttons = document.querySelectorAll('.button');
