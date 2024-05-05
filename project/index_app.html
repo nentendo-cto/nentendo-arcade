@@ -21,18 +21,21 @@
 			/* Adjust the padding to change the size of the button */
 			font-family: "Comic Sans MS", cursive;
 			/* Use Comic Sans MS font */
-			font-size: 16px;
+			font-size: 32px;
 			cursor: pointer;
 		}
 
-		#gameContainer {
-			background-image: url('images/ArcadeBazel2.png');
+		#desktopBg {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-image: url('images/ArcadeBazelNES.png');
 			background-size: contain;
 			background-position: center;
 			background-repeat: no-repeat;
-			box-sizing: border-box;
-			display: flex;
-			justify-content: center;
+			z-index: -1;
 		}
 
 		.mobileSelect {
@@ -47,7 +50,6 @@
 			/* Adjust as needed */
 			height: auto;
 			/* Allows the height to adjust according to the width */
-			/* max-width: 320px; */
 			/* Adjust as needed */
 			margin: 0 auto;
 			/* Centers the controller */
@@ -68,7 +70,7 @@
 			display: none;
 		}
 
-		.button {
+		.gamepadButton {
 			position: absolute;
 			width: 20%;
 			height: auto;
@@ -117,6 +119,49 @@
 			left: 26%;
 		}
 
+		.overlay {
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background: rgba(0, 0, 0, 0.7);
+			transition: opacity 500ms;
+			visibility: hidden;
+			opacity: 0;
+		}
+
+		.overlay:target {
+			visibility: visible;
+			opacity: 1;
+		}
+
+		.popup {
+			margin: 70px auto;
+			padding: 20px;
+			background: #000000;
+			border-radius: 5px;
+			width: 50%;
+			position: relative;
+			transition: all 2s ease-in-out;
+		}
+
+		.popup .close {
+			position: absolute;
+			top: 20px;
+			right: 30px;
+			transition: all 200ms;
+			font-size: 60px;
+			font-weight: bold;
+			text-decoration: none;
+			color: #ffffff;
+		}
+
+		.popup .content {
+			max-height: 30%;
+			overflow: auto;
+		}
+
 		/* Default styles for both elements */
 		.mobile-only {
 			display: none;
@@ -128,14 +173,15 @@
 			/* Show by default */
 		}
 
+		/* .wrapper {
+			width: 100%;
+		}
+
 		#canvasWrapper {
 			position: relative;
-			top: none;
-			left: none;
-			max-width: 1024;
 			display: flex;
 			justify-content: center;
-		}
+		} */
 
 		/* Media query for mobile devices */
 		@media screen and (max-width: 768px) {
@@ -149,24 +195,11 @@
 				/* Hide on mobile */
 			}
 
-			#canvasWrapper {
+			/* #canvasWrapper {
 				position: absolute;
-				top: 11%;
-				left: 20%;
-				max-width: 200px;
 				display: flex;
 				justify-content: normal;
-			}
-
-			#gameContainer {
-				background-image: none;
-				background-size: contain;
-				background-position: center;
-				background-repeat: no-repeat;
-				box-sizing: border-box;
-				display: flex;
-				justify-content: center;
-			}
+			} */
 		}
 	</style>
 	<meta charset="utf-8" />
@@ -195,63 +228,13 @@
 			js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.0&appId=310800822454793";
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));</script>
-	<div id="gameContainer" style="width:100%;">
-		<div id="canvasWrapper" class="wrapper" style="width:100%;"></div>
-	</div>
+
 	<!-- Desktop Content -->
+
+	<div id="desktopBg" class="desktop-only"></div>
+
+
 	<div id="content" class="desktop-only" style="width:100%; height:100%;">
-		<div id="infoPanel" class="infoPanel desktop-only" style="color: white;">
-			<img src="images/logo.png" class="desktop-only" style="width: 40%; height: auto;"></img>
-			<!-- <h1>Nentendo</h1> -->
-			<!-- <p>Drag a ROM file (can be zipped) onto the screen to load a game.</p> -->
-			<p class="desktop-only">Keys:</p>
-			<ul class="desktop-only" style="text-shadow: 0 0 2px #000000;">
-				<li>A button - Space or Z</li>
-				<li>B button - X or F</li>
-				<li>Select button - C or Shift</li>
-				<li>Start button - V or Enter</li>
-				<li>DPAD - Arrows or WASD</li>
-			</ul>
-			<!-- Button to play ROM -->
-			<!-- <button id="playButton">Pley</button> -->
-			<!-- <p>Pete Ward, 2014 [peteward44 at gmail dot com]</p> -->
-			<p class="desktop-only">
-				<select type="text" list="gamesList" id="loadGameComboBox">
-					<datalist id="gamesList">
-						<option value="">Select a ROM file to load...</option>
-						<option value="roms/Super Mario Bros (E).nes.zip">Sooper Merio Bros</option>
-						<option value="roms/Super Mario Bros 3 (U) (PRG 0).nes.zip">Sooper Merio Bros 3</option>
-						<option value="roms/Legend of Zelda, The (U) (PRG 0).nes.zip">The Legend of Zeldey</option>
-						<option value="roms/Zelda 2 - The Adventure of Link (U).nes.zip">Zeldey 2 - Adventure of Lenk
-						</option>
-						<option value="roms/Metroid (U).nes.zip">Meetroid</option>
-						<option value="roms/Mega Man (U).nes.zip">Megu Men</option>
-						<option value="roms/Mike Tyson's Punch-Out!! (U).nes.zip">Meke Tysen's Punch-Out!!</option>
-						<option value="roms/Snake Rattle'n Roll (U).nes.zip">Snek Rattle'n Reel</option>
-					</datalist>
-				</select>
-			</p>
-			<div id="postProcessingDiv" style="display:none;" class="desktop-only">
-				<p>Effects:</p>
-				<p">
-					<select type="text" list="shaderList" id="shaderListComboBox">
-						<datalist id="shaderList">
-							<option value="">None</option>
-							<option value="v1.0/CRT.xml">Old Skool Vibes</option>
-						</datalist>
-					</select>
-					</p>
-			</div>
-			<!-- Button to toggle post processing -->
-			<!-- <button id="togglePostProcessingButton">Oldskool Off</button> -->
-			<p class="desktop-only" style="padding: 20px;">
-				<a href="https://dexscreener.com/solana/eh4vlnc5bczg2jtgb1dwcb8krmmzbat8rtyted2z5g8z"
-					class="buy-button">Buy $NENT</a>
-			</p>
-			<p class="desktop-only" style="padding: 20px">
-				<a href="https://t.me/NentendoCTO" class="buy-button">Telegram</a>
-			</p>
-		</div>
 		<div id="controlBar" class="controlBar" class="desktop-only">
 			<div id="debugBar" class="ui-widget-header ui-corner-all">
 				<button class="controlBarButton" id="debugControlBar_playOneFrameButton"></button>
@@ -397,61 +380,85 @@
 	</div>
 
 	<!-- Mobile Content -->
+
 	<div id="controller" class="mobile-only">
-		<img src="images/NentMobile.png" class="mobile-only" alt="Game Controller" id="gameController">
-		<select type="text" class="mobileSelect mobile-only" list="gamesList" id="loadGameComboBox">
-			<datalist id="gamesList">
-				<option value="">Select a ROM file to load...</option>
-				<option value="roms/Super Mario Bros (E).nes.zip">Sooper Merio Bros</option>
-				<option value="roms/Super Mario Bros 3 (U) (PRG 0).nes.zip">Sooper Merio Bros 3</option>
-				<option value="roms/Legend of Zelda, The (U) (PRG 0).nes.zip">The Legend of Zeldey</option>
-				<option value="roms/Zelda 2 - The Adventure of Link (U).nes.zip">Zeldey 2 - Adventure of Lenk</option>
-				<option value="roms/Metroid (U).nes.zip">Meetroid</option>
-				<option value="roms/Mega Man (U).nes.zip">Megu Men</option>
-				<option value="roms/Mike Tyson's Punch-Out!! (U).nes.zip">Meke Tysen's Punch-Out!!</option>
-				<option value="roms/Snake Rattle'n Roll (U).nes.zip">Snek Rattle'n Reel</option>
-			</datalist>
-		</select>
+		<img src="images/NentMobile.png" class="mobile-only" alt="Game Controller" id="gameController"></img>
 		<img src="images/NentboyON.png" class="mobile-only" id="light"></img>
-		<!-- <div id="content" class="mobileCanvas mobile-only">
-			<div id="canvasWrapper" class="wrapper"></div>
-		</div> -->
 		<div class="mobile-only">
-			<div id="dpadUp" class="button"></div>
-			<div id="dpadDown" class="button"></div>
-			<div id="dpadLeft" class="button"></div>
-			<div id="dpadRight" class="button"></div>
-			<div id="buttonA" class="button"></div>
-			<div id="buttonB" class="button"></div>
-			<div id="start" class="button"></div>
-			<div id="select" class="button"></div>
+			<div id="dpadUp" class="gamepadButton"></div>
+			<div id="dpadDown" class="gamepadButton"></div>
+			<div id="dpadLeft" class="gamepadButton"></div>
+			<div id="dpadRight" class="gamepadButton"></div>
+			<div id="buttonA" class="gamepadButton"></div>
+			<div id="buttonB" class="gamepadButton"></div>
+			<div id="start" class="gamepadButton"></div>
+			<div id="select" class="gamepadButton"></div>
 		</div>
 	</div>
-	<div id="postProcessingDiv" style="display:none;" class="mobile-only">
-		<p>Effects:</p>
-		<p>
-			<select type="text" list="shaderList" id="shaderListComboBox">
-				<datalist id="shaderList">
-					<option value="">None</option>
-					<option value="v1.0/Dot 'n Bloom'.xml">Old Skool Vibes</option>
-				</datalist>
-			</select>
-		</p>
+	<!-- Canvas is where the emulator displays after it loads (dynamic) -->
+	<div id="canvasWrapper" class="wrapper"></div>
+
+	<!-- pop up menu -->
+	<div id="popup1" class="overlay">
+		<div class="popup">
+			<a class="close" href="#">&times;</a>
+			<div class="content">
+				<div id="infoPanel" class="infoPanel" style="color: white;background-color:black;font-size:x-large;">
+					<img src="images/logo.png" style="width: 40%; height: auto;"></img>
+					<p class="desktop-only">Keys:</p>
+					<ul class="desktop-only" style="text-shadow: 0 0 2px #000000;">
+						<li>A button - Space or Z</li>
+						<li>B button - X or F</li>
+						<li>Select button - C or Shift</li>
+						<li>Start button - V or Enter</li>
+						<li>DPAD - Arrows or WASD</li>
+					</ul>
+					<p>
+						<select type="text" list="gamesList" id="loadGameComboBox" style="font-size:x-large;">
+							<datalist id="gamesList">
+								<option value="">Select a ROM file to load...</option>
+								<option value="roms/Super Mario Bros (E).nes.zip">Sooper Merio Bros</option>
+								<option value="roms/Super Mario Bros 3 (U) (PRG 0).nes.zip">Sooper Merio Bros 3</option>
+								<option value="roms/Legend of Zelda, The (U) (PRG 0).nes.zip">The Legend of Zeldey</option>
+								<option value="roms/Zelda 2 - The Adventure of Link (U).nes.zip">Zeldey 2 - Adventure of Lenk</option>
+								<option value="roms/Metroid (U).nes.zip">Meetroid</option>
+								<option value="roms/Mega Man (U).nes.zip">Megu Men</option>
+								<option value="roms/Mike Tyson's Punch-Out!! (U).nes.zip">Meke Tysen's Punch-Out!!
+								</option>
+								<option value="roms/Snake Rattle'n Roll (U).nes.zip">Snek Rattle'n Reel</option>
+							</datalist>
+						</select>
+					</p>
+					<div id="postProcessingDiv">
+						<p>Effects:</p>
+						<p">
+							<select type="text" list="shaderList" id="shaderListComboBox" style="font-size:x-large">
+								<datalist id="shaderList">
+									<option value="">None</option>
+									<option value="v1.0/CRT.xml">Old Skool Vibes</option>
+								</datalist>
+							</select>
+							</p>
+					</div>
+					<!-- Buy & TG Buttons -->
+					<p style="padding: 20px;">
+						<a href="https://dexscreener.com/solana/eh4vlnc5bczg2jtgb1dwcb8krmmzbat8rtyted2z5g8z"
+							class="buy-button">Buy $NENT</a>
+					</p>
+					<p style="padding: 20px">
+						<a href="https://t.me/NentendoCTO" class="buy-button">Telegram</a>
+					</p>
+				</div>
+			</div>
+		</div>
 	</div>
-	<p style="padding: 20px;text-align:center" class="mobile-only">
-		<a href="https://dexscreener.com/solana/eh4vlnc5bczg2jtgb1dwcb8krmmzbat8rtyted2z5g8z" class="buy-button"
-			style="padding:20px;">Buy $NENT</a>
-		<a href="https://t.me/NentendoCTO" class="buy-button" style="padding:20px;margin-left:20px">Telegram</a>
-	</p>
+	<a class="button" href="#popup1"><img src="images/hamburger.png" style="width: 10%;background-color: white;"></a>
 
 
-	<script>
-		var canvas = document.getElementById('content');
-		var heightRatio = 1.5;
-		canvas.height = canvas.width * heightRatio;
-	</script>
 	<script>
 		document.addEventListener('DOMContentLoaded', function () {
+			// resizeCanvas()
+
 			const buttons = document.querySelectorAll('.button');
 
 			buttons.forEach(button => {
@@ -462,6 +469,32 @@
 				});
 			});
 		});
+
+		// function resizeCanvas() {
+		// 	var canvas = document.querySelector('canvas');
+
+		// 	if (canvas) {
+		// 		if (canvas.complete) {
+		// 			adjustCanvasWidth();
+		// 		} else {
+		// 			canvas.addEventListener('load', function () {
+		// 				adjustCanvasWidth();
+		// 			});
+		// 		}
+		// 	} else {
+		// 		console.error('Canvas element not found.');
+		// 	}
+		// }
+		// function adjustCanvasWidth() {
+		// 	if (window.matchMedia('(max-width: 768px)').matches) {
+		// 				var heightRatio = 1.5;
+		// 				canvas.width = 200;
+		// 				canvas.height = canvas.width * heightRatio;
+		// 			} else {
+		// 				canvas.width = auto;
+
+		// 			}
+		// }
 	</script>
 
 	<!-- build:js js/nes.components.min.js -->

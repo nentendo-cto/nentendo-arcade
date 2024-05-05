@@ -24,66 +24,8 @@ function getParameterByName(name) {
     return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
-// Function to check the value of the selector list and update the button text
-// function updateButton() {
-// 	var shaderListComboBox = document.getElementById("shaderListComboBox");
-// 	var toggleButton = document.getElementById("togglePostProcessingButton");
-// 	console.log("shader test - " + shaderListComboBox.value);
-
-// 	// Check if the value of the selector list is not null or empty
-// 	if (shaderListComboBox.value) {
-// 		// If the value is present, update button text accordingly
-// 		if (shaderListComboBox.value.length > 0) {
-// 			toggleButton.textContent = "Oldschool On";
-// 		} else {
-// 			toggleButton.textContent = "Oldskool Off";
-// 		}
-// 	} else {
-// 		// If the value is null or empty, set default button text
-// 		toggleButton.textContent = "Oldskool Off";
-// 	}
-// }
-
-// Event listener to call updateButton() when the selector list value changes
-// document.getElementById("shaderListComboBox").addEventListener("change", updateButton);
-
-// Initial call to updateButton() when the page loads
-// updateButton();
-
-// Function to set the ROM value and trigger play action
-// function playRom() {
-// 	var loadGameComboBox = document.getElementById("loadGameComboBox");
-// 	var playButton = document.getElementById("playButton");
-// 	console.log("playrom test - " + loadGameComboBox.value);
-
-// 	// Check if the ROM value is already set
-// 	if (loadGameComboBox.value) {
-// 		console.log("Playing ROM: " + loadGameComboBox.value);
-// 		// playButton.hidden = true;
-// 		// Perform play action here, e.g., 
-// 		Gui.App.loadRomFromUrl(loadGameComboBox.value);
-// 	} else {
-// 		console.log("No ROM selected.");
-// 		// playButton.hidden = false;
-// 		// Provide feedback to the user that no ROM is selected
-// 		loadGameComboBox.value = "roms/Super Mario Bros (E).nes.zip";
-// 		Gui.App.loadRomFromUrl(loadGameComboBox.value);
-// 	}
-// }
-
-// playRom();
-
-// Event listener to call playRom() when the play button is clicked
-// document.getElementById("playButton").addEventListener("click", playRom);
-
 window.onload = function() {
-	// let romValue;
-	// let shaderValue;
 
-	// This allows a list box to be on the page to load a given nes file local to the site
-	// romValue = "roms/Super Mario Bros (E).nes.zip";
-	// console.log( "Loading ROM " + value );
-	// Gui.App.loadRomFromUrl( value );
 	var sel = $('#loadGameComboBox');
 	if ( sel ) {
 		sel['change'](function(){
@@ -100,11 +42,7 @@ window.onload = function() {
 			}
 		});
 	}
-	
-	// And this is the select box for selecting a WebGL shader
-	// shaderValue = "shaders/v1.0/CRT.xml";
-	// console.log( "Loading shader " + value );
-	// Gui.App.loadShaderFromUrl( value );
+
 	sel = $('#shaderListComboBox');
 	if ( sel ) {
 		sel['change'](function(){

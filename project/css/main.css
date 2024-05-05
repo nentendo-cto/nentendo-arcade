@@ -49,12 +49,7 @@
 	}
 	
 	.infoPanel {
-		position: absolute;
-		right: auto;
-		bottom: auto;
 		display: block;
-		width: 20%;
-		height: 50%;
 	}
 		
 	.socialMediaPanel {

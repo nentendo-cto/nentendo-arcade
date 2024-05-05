@@ -94,7 +94,9 @@ this.Gui = this.Gui || {};
 	
 	CanvasRenderSurface.prototype.render = function( mainboard ) {
 
-		this._offscreenCanvas.putImageData( this._offscreenData, 0, 0 );
+		// this._offscreenCanvas.putImageData( this._offscreenData, 0, 0 );
+		this._element.width = this._element.clientWidth;
+		this._element.height = this._element.clientHeight;
 		// Draw offscreen canvas onto front buffer, resizing it in the process
 		this._canvas.drawImage( this._offscreenElement, 0, 0, this._element.clientWidth, this._element.clientHeight );
 	};
