@@ -173,15 +173,9 @@
 			/* Show by default */
 		}
 
-		/* .wrapper {
-			width: 100%;
+		canvas {
+			width: auto;
 		}
-
-		#canvasWrapper {
-			position: relative;
-			display: flex;
-			justify-content: center;
-		} */
 
 		/* Media query for mobile devices */
 		@media screen and (max-width: 768px) {
@@ -194,12 +188,11 @@
 				display: none;
 				/* Hide on mobile */
 			}
-
-			/* #canvasWrapper {
-				position: absolute;
-				display: flex;
-				justify-content: normal;
-			} */
+			canvas {
+				width: 20%;
+				top: -71%;
+				left: 20%;
+			}
 		}
 	</style>
 	<meta charset="utf-8" />
@@ -452,14 +445,16 @@
 			</div>
 		</div>
 	</div>
-	<a class="button" href="#popup1"><img src="images/hamburger.png" style="width: 10%;background-color: white;"></a>
+	<a class="button" href="#popup1" style="position:absolute;top:2%;left:80%;">
+		<img class="mobile-only" src="images/hamburger.png" style="width: 60%;background-color: white;border-radius:60px;">
+		<img class="desktop-only" src="images/hamburger.png" style="width: 30%;background-color: white;">
+	</a>
 
 
 	<script>
 		document.addEventListener('DOMContentLoaded', function () {
-			// resizeCanvas()
 
-			const buttons = document.querySelectorAll('.button');
+			const buttons = document.querySelectorAll('.gamepadButton');
 
 			buttons.forEach(button => {
 				button.addEventListener('click', function () {
@@ -470,31 +465,6 @@
 			});
 		});
 
-		// function resizeCanvas() {
-		// 	var canvas = document.querySelector('canvas');
-
-		// 	if (canvas) {
-		// 		if (canvas.complete) {
-		// 			adjustCanvasWidth();
-		// 		} else {
-		// 			canvas.addEventListener('load', function () {
-		// 				adjustCanvasWidth();
-		// 			});
-		// 		}
-		// 	} else {
-		// 		console.error('Canvas element not found.');
-		// 	}
-		// }
-		// function adjustCanvasWidth() {
-		// 	if (window.matchMedia('(max-width: 768px)').matches) {
-		// 				var heightRatio = 1.5;
-		// 				canvas.width = 200;
-		// 				canvas.height = canvas.width * heightRatio;
-		// 			} else {
-		// 				canvas.width = auto;
-
-		// 			}
-		// }
 	</script>
 
 	<!-- build:js js/nes.components.min.js -->
