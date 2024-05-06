@@ -50,6 +50,8 @@
 	
 	.infoPanel {
 		display: block;
+		width: auto;
+		position: relative;
 	}
 		
 	.socialMediaPanel {

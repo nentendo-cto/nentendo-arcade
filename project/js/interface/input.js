@@ -100,35 +100,26 @@ this.Gui = this.Gui || {};
 
 		this._loadKeyBindingsFromLocalStorage();
 
-		// <div id="dpadUp" class="gamepadButton"></div>
-		// <div id="dpadDown" class="gamepadButton"></div>
-		// <div id="dpadLeft" class="gamepadButton"></div>
-		// <div id="dpadRight" class="gamepadButton"></div>
-		// <div id="buttonA" class="gamepadButton"></div>
-		// <div id="buttonB" class="gamepadButton"></div>
-		// <div id="start" class="gamepadButton"></div>
-		// <div id="select" class="gamepadButton"></div>
-
-		// this._buttonMap = {
-		// 	'dpadUp': 'UP',
-		// 	'dpadDown': 'DOWN',
-		// 	'dpadLeft': 'LEFT',
-		// 	'dpadRight': 'RIGHT',
-		// 	'buttonA': 'A',
-		// 	'buttonB': 'B',
-		// 	'start': 'START',
-		// 	'select': 'SELECT'
+		// this._htmlButtonMap = {
+		// 	'dpadUp': [38, 87, 104],
+		// 	'dpadDown': [40, 83, 101, 98],
+		// 	'dpadLeft': [37, 65, 100],
+		// 	'dpadRight': [39, 68, 102],
+		// 	'buttonA': [90, 32],
+		// 	'buttonB': [88, 70],
+		// 	'start': [13, 86],
+		// 	'select': [16, 160, 161, 67]
 		// }
 
 		this._htmlButtonMap = {
-			'dpadUp': [38, 87, 104],
-			'dpadDown': [40, 83, 101, 98],
-			'dpadLeft': [37, 65, 100],
-			'dpadRight': [39, 68, 102],
-			'buttonA': [90, 32],
-			'buttonB': [88, 70],
-			'start': [13, 86],
-			'select': [16, 160, 161, 67]
+			'dpadUp': 38,
+			'dpadDown': 40,
+			'dpadLeft': 37,
+			'dpadRight': 39,
+			'buttonA': 90,
+			'buttonB': 88,
+			'start': 13,
+			'select': 16
 		}
 
 		// these values are guessed - need testing
@@ -158,13 +149,17 @@ this.Gui = this.Gui || {};
 			if (this._htmlButtonMap.hasOwnProperty(buttonId)) {
 				var buttonName = this._htmlButtonMap[buttonId];
 				var buttonElement = document.getElementById(buttonId);
-				console.log('button press ' + buttonId + " " + buttonName);
-				buttonElement.addEventListener('click', function (event) {
-					that._doButtonPress(buttonName, true);
-				});
-				buttonElement.addEventListener('mouseup', function (event) {
-					that._doButtonPress(buttonName, false);
-				});
+				(function (name) {
+					buttonElement.addEventListener('mousedown', function (event) {
+						console.log('button pressed ' + name);
+						// that._doButtonPress(name, true);
+						that._doKeyboardButtonPress(Number(name), true);
+					});
+					buttonElement.addEventListener('mouseup', function (event) {
+						console.log('button released ' + name);
+						that._doKeyboardButtonPress(Number(name), false);
+					});
+				})(buttonName); // Immediately invoke the function with the current buttonName
 			}
 		}
 		// keyboard support
@@ -215,7 +210,7 @@ this.Gui = this.Gui || {};
 			for (var buttonIndex = 0; buttonIndex < pad.getButtonCount(); ++buttonIndex) {
 				var buttonState = pad.getButtonState(pads[i], buttonIndex);
 				if (buttonState > 0) {
-					//console.log( "Pressed button " + buttonIndex );
+					console.log( "Pressed keypad " + buttonIndex );
 					this._doGamepadButton(i, buttonIndex, buttonState === 1);
 				}
 			}
@@ -281,6 +276,7 @@ this.Gui = this.Gui || {};
 
 			var joypad = this._mainboard.inputdevicebus.getJoypad(playerIndex);
 			var map = this._playerKeyboardMaps[playerIndex];
+			console.log(joypad);
 
 			if (map && joypad) {
 				for (var buttonIndex = 0; buttonIndex < map.length; ++buttonIndex) {
@@ -368,17 +364,20 @@ this.Gui = this.Gui || {};
 	};
 
 	Input.prototype._doButtonPress = function (buttonName, pressed) {
-		// Translate buttonName to corresponding gamepad buttons
-		var buttonIndexes = this._htmlButtonMap[buttonName];
-		if (buttonIndexes) {
-			for (var i = 0; i < buttonIndexes.length; i++) {
-				var buttonIndex = buttonIndexes[i];
-				// Trigger actions for gamepad buttons
-				// Example: this._doGamepadButton(gamepadIndex, buttonIndex, pressed);
-				this._doKeyboardButtonPress(buttonIndex, pressed);
-				console.log("pressing " + buttonIndex);
-			}
-		}
+		this._doKeyboardButtonPress(Number(buttonName), pressed);
+		console.log("key press - " + buttonName);
+		// // Translate buttonName to corresponding gamepad buttons
+		// var buttonIndexes = this._htmlButtonMap[buttonName];
+		// if (buttonIndexes) {
+		// 	console.log('key press - inside if block ' + buttonIndexes);
+		// 	for (var i = 0; i < buttonIndexes.length; i++) {
+		// 		var buttonIndex = buttonIndexes[i];
+		// 		// Trigger actions for gamepad buttons
+		// 		// Example: this._doGamepadButton(gamepadIndex, buttonIndex, pressed);
+		// 		this._doKeyboardButtonPress(buttonIndex, pressed);
+		// 		console.log("pressing " + buttonIndex);
+		// 	}
+		// }
 	};
 	Gui.Input = Input;
 

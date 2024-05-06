@@ -4,6 +4,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
 	<title>Nentendo CTO</title>
 	<style>
 		#body {
@@ -141,7 +142,7 @@
 			padding: 20px;
 			background: #000000;
 			border-radius: 5px;
-			width: 50%;
+			width: 60%;
 			position: relative;
 			transition: all 2s ease-in-out;
 		}
@@ -162,6 +163,20 @@
 			overflow: auto;
 		}
 
+		.noSelect {
+			-webkit-tap-highlight-color: transparent;
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+
+		.noSelect:focus {
+			outline: none !important;
+		}
+
 		/* Default styles for both elements */
 		.mobile-only {
 			display: none;
@@ -174,7 +189,9 @@
 		}
 
 		canvas {
-			width: auto;
+			max-width: 72%;
+			position: relative;
+			left: 17.5%;
 		}
 
 		/* Media query for mobile devices */
@@ -188,15 +205,18 @@
 				display: none;
 				/* Hide on mobile */
 			}
+
 			canvas {
-				width: 20%;
-				top: -71%;
-				left: 20%;
+				position: relative;
+				max-width: 50%;
+				left: 20.4%;
 			}
 		}
 	</style>
 	<meta charset="utf-8" />
 	<meta http-equiv="Cache-Control" content="no-store" /> <!-- stops chrome from caching -->
+
+	<link rel="icon" href="/favicon.ico">
 
 	<!-- build:css css/thirdparty.min.css -->
 	<link rel="stylesheet" href="../bower_components/jquery-ui/themes/smoothness/jquery-ui.css">
@@ -375,7 +395,7 @@
 	<!-- Mobile Content -->
 
 	<div id="controller" class="mobile-only">
-		<img src="images/NentMobile.png" class="mobile-only" alt="Game Controller" id="gameController"></img>
+		<img src="images/NentMobile.png" class="noSelect mobile-only" alt="Game Controller" id="gameController"></img>
 		<img src="images/NentboyON.png" class="mobile-only" id="light"></img>
 		<div class="mobile-only">
 			<div id="dpadUp" class="gamepadButton"></div>
@@ -394,10 +414,11 @@
 	<!-- pop up menu -->
 	<div id="popup1" class="overlay">
 		<div class="popup">
-			<a class="close" href="#">&times;</a>
+
 			<div class="content">
 				<div id="infoPanel" class="infoPanel" style="color: white;background-color:black;font-size:x-large;">
 					<img src="images/logo.png" style="width: 40%; height: auto;"></img>
+					<a class="close" href="#">&times;</a>
 					<p class="desktop-only">Keys:</p>
 					<ul class="desktop-only" style="text-shadow: 0 0 2px #000000;">
 						<li>A button - Space or Z</li>
@@ -412,8 +433,10 @@
 								<option value="">Select a ROM file to load...</option>
 								<option value="roms/Super Mario Bros (E).nes.zip">Sooper Merio Bros</option>
 								<option value="roms/Super Mario Bros 3 (U) (PRG 0).nes.zip">Sooper Merio Bros 3</option>
-								<option value="roms/Legend of Zelda, The (U) (PRG 0).nes.zip">The Legend of Zeldey</option>
-								<option value="roms/Zelda 2 - The Adventure of Link (U).nes.zip">Zeldey 2 - Adventure of Lenk</option>
+								<option value="roms/Legend of Zelda, The (U) (PRG 0).nes.zip">The Legend of Zeldey
+								</option>
+								<option value="roms/Zelda 2 - The Adventure of Link (U).nes.zip">Zeldey 2 - Adventure of
+									Lenk</option>
 								<option value="roms/Metroid (U).nes.zip">Meetroid</option>
 								<option value="roms/Mega Man (U).nes.zip">Megu Men</option>
 								<option value="roms/Mike Tyson's Punch-Out!! (U).nes.zip">Meke Tysen's Punch-Out!!
@@ -446,24 +469,26 @@
 		</div>
 	</div>
 	<a class="button" href="#popup1" style="position:absolute;top:2%;left:80%;">
-		<img class="mobile-only" src="images/hamburger.png" style="width: 60%;background-color: white;border-radius:60px;">
-		<img class="desktop-only" src="images/hamburger.png" style="width: 30%;background-color: white;">
+		<img class="mobile-only" src="images/PowerButton.png"
+			style="width: 60%;background-color: white;border-radius:60px;">
+		<img class="desktop-only" src="images/PowerButton.png"
+			style="width: 30%;background-color: white; border-radius:60px;justify-content: left;">
 	</a>
 
 
 	<script>
-		document.addEventListener('DOMContentLoaded', function () {
+		// document.addEventListener('DOMContentLoaded', function () {
 
-			const buttons = document.querySelectorAll('.gamepadButton');
+		// 	const buttons = document.querySelectorAll('.gamepadButton');
 
-			buttons.forEach(button => {
-				button.addEventListener('click', function () {
-					const buttonId = button.id;
-					console.log(`Clicked ${buttonId}`);
-					// Add your logic here for what happens when each button is clicked
-				});
-			});
-		});
+		// 	buttons.forEach(button => {
+		// 		button.addEventListener('click', function () {
+		// 			const buttonId = button.id;
+		// 			console.log(`Clicked ${buttonId}`);
+		// 			// Add your logic here for what happens when each button is clicked
+		// 		});
+		// 	});
+		// });
 
 	</script>
 
