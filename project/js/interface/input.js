@@ -159,12 +159,21 @@ this.Gui = this.Gui || {};
 						console.log('button released ' + name);
 						that._doKeyboardButtonPress(Number(name), false);
 					});
+					buttonElement.addEventListener('touchstart', function (event) {
+						console.log('touch pressed ' + name);
+						// that._doButtonPress(name, true);
+						that._doKeyboardButtonPress(Number(name), true);
+					});
+					buttonElement.addEventListener('touchend', function (event) {
+						console.log('touch released ' + name);
+						that._doKeyboardButtonPress(Number(name), false);
+					});
 				})(buttonName); // Immediately invoke the function with the current buttonName
 			}
 		}
 		// keyboard support
-		window.addEventListener('keydown', function (event) { if (that._doKeyboardButtonPress(Number(event.keyCode), true)) { event.preventDefault(); } }, false);
-		window.addEventListener('keyup', function (event) { if (that._doKeyboardButtonPress(Number(event.keyCode), false)) { event.preventDefault(); } }, false);
+		window.addEventListener('keydown', function (event) { if (that._doKeyboardButtonPress(Number(event.key), true)) { event.preventDefault(); } }, false);
+		window.addEventListener('keyup', function (event) { if (that._doKeyboardButtonPress(Number(event.key), false)) { event.preventDefault(); } }, false);
 
 		this._gamepadsSupported = navigator['getGamepads'] !== undefined;
 
@@ -276,7 +285,6 @@ this.Gui = this.Gui || {};
 
 			var joypad = this._mainboard.inputdevicebus.getJoypad(playerIndex);
 			var map = this._playerKeyboardMaps[playerIndex];
-			console.log(joypad);
 
 			if (map && joypad) {
 				for (var buttonIndex = 0; buttonIndex < map.length; ++buttonIndex) {
@@ -363,22 +371,6 @@ this.Gui = this.Gui || {};
 		Gui.saveToLocalStorage("webnes_keybindings", this._playerKeyboardMaps);
 	};
 
-	Input.prototype._doButtonPress = function (buttonName, pressed) {
-		this._doKeyboardButtonPress(Number(buttonName), pressed);
-		console.log("key press - " + buttonName);
-		// // Translate buttonName to corresponding gamepad buttons
-		// var buttonIndexes = this._htmlButtonMap[buttonName];
-		// if (buttonIndexes) {
-		// 	console.log('key press - inside if block ' + buttonIndexes);
-		// 	for (var i = 0; i < buttonIndexes.length; i++) {
-		// 		var buttonIndex = buttonIndexes[i];
-		// 		// Trigger actions for gamepad buttons
-		// 		// Example: this._doGamepadButton(gamepadIndex, buttonIndex, pressed);
-		// 		this._doKeyboardButtonPress(buttonIndex, pressed);
-		// 		console.log("pressing " + buttonIndex);
-		// 	}
-		// }
-	};
 	Gui.Input = Input;
 
 }());

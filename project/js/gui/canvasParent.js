@@ -26,7 +26,7 @@ this.Gui = this.Gui || {};
 		var that = this;
 
 		this._eventBus = new Nes.EventBus();
-		this._parent = $( "#content" );
+		this._parent = $( "#container" );
 		this._element = $( "#canvasWrapper" );
 		
 		this._canvasElement = document.createElement('canvas');
@@ -39,6 +39,7 @@ this.Gui = this.Gui || {};
 			that._setPosition();
 		});
 		this._setPosition();
+		//this._element[0].style.top = 0;
 	};
 	
 	
@@ -46,7 +47,6 @@ this.Gui = this.Gui || {};
 		
 		this._eventBus.connect( name, cb );
 	};
-	
 	
 	CanvasParent.prototype.getCanvasElement = function() {
 		return this._canvasElement;
@@ -74,7 +74,10 @@ this.Gui = this.Gui || {};
 	
 	
 	CanvasParent.prototype._setPosition = function() {
-		this._element.position( { 'of': this._parent, 'my': "center center", 'at': "center center" } );
+		this._element.position( { 
+			'of': this._parent, 
+			'my': "left top", 
+			'at': "left top" } );
 	};
 	
 	

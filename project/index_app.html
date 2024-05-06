@@ -163,6 +163,12 @@
 			overflow: auto;
 		}
 
+		#container {
+			position: absolute;
+			top: 0;
+			height:35vh;
+		}
+
 		.noSelect {
 			-webkit-tap-highlight-color: transparent;
 			-webkit-touch-callout: none;
@@ -189,9 +195,7 @@
 		}
 
 		canvas {
-			max-width: 72%;
-			position: relative;
-			left: 17.5%;
+			max-width: 73%;
 		}
 
 		/* Media query for mobile devices */
@@ -205,18 +209,23 @@
 				display: none;
 				/* Hide on mobile */
 			}
-
-			canvas {
-				position: relative;
-				max-width: 50%;
-				left: 20.4%;
-			}
 		}
 	</style>
 	<meta charset="utf-8" />
 	<meta http-equiv="Cache-Control" content="no-store" /> <!-- stops chrome from caching -->
 
-	<link rel="icon" href="/favicon.ico">
+	<!-- PWA -->
+	<!-- Enables safari home app full screen -->
+	<link rel="manifest" href="/manifest.json">
+
+	<!-- web & app icons -->
+	<link rel="icon" type="image/png" sizes="16x16" rel="noopener" target="_blank" href="images/MarioICON(16x16).png">
+	<link rel="icon" type="image/png" sizes="32x32" rel="noopener" target="_blank" href="images/MarioICON(32x32).png">
+	<link rel="icon" type="image/png" sizes="150x150" rel="noopener" target="_blank"
+		href="images/MarioICON(150x150).png">
+	<link rel="icon" type="image/png" sizes="192x192" rel="noopener" target="_blank"
+		href="images/MarioICON(192x192).png">
+	<link rel="apple-touch-icon" sizes="150x150" rel="noopener" target="_blank" href="images/MarioICON(150x150).png">
 
 	<!-- build:css css/thirdparty.min.css -->
 	<link rel="stylesheet" href="../bower_components/jquery-ui/themes/smoothness/jquery-ui.css">
@@ -409,7 +418,9 @@
 		</div>
 	</div>
 	<!-- Canvas is where the emulator displays after it loads (dynamic) -->
-	<div id="canvasWrapper" class="wrapper"></div>
+	<div id="container">
+		<div id="canvasWrapper" class="wrapper"></div>
+	</div>
 
 	<!-- pop up menu -->
 	<div id="popup1" class="overlay">
@@ -458,11 +469,12 @@
 					</div>
 					<!-- Buy & TG Buttons -->
 					<p style="padding: 20px;">
-						<a href="https://dexscreener.com/solana/eh4vlnc5bczg2jtgb1dwcb8krmmzbat8rtyted2z5g8z"
+						<a target="_blank"
+							href="https://dexscreener.com/solana/eh4vlnc5bczg2jtgb1dwcb8krmmzbat8rtyted2z5g8z"
 							class="buy-button">Buy $NENT</a>
 					</p>
 					<p style="padding: 20px">
-						<a href="https://t.me/NentendoCTO" class="buy-button">Telegram</a>
+						<a target="_blank" href="https://t.me/NentendoCTO" class="buy-button">Telegram</a>
 					</p>
 				</div>
 			</div>
@@ -477,18 +489,6 @@
 
 
 	<script>
-		// document.addEventListener('DOMContentLoaded', function () {
-
-		// 	const buttons = document.querySelectorAll('.gamepadButton');
-
-		// 	buttons.forEach(button => {
-		// 		button.addEventListener('click', function () {
-		// 			const buttonId = button.id;
-		// 			console.log(`Clicked ${buttonId}`);
-		// 			// Add your logic here for what happens when each button is clicked
-		// 		});
-		// 	});
-		// });
 
 	</script>
 
