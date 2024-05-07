@@ -9,6 +9,7 @@
 	<style>
 		#body {
 			margin: 0;
+			overflow: hidden;
 		}
 
 		/* Style for the button */
@@ -440,14 +441,14 @@
 		<img src="images/NentMobile.png" class="noSelect mobile-only" alt="Game Controller" id="gameController"></img>
 		<img src="images/NentboyON.png" class="mobile-only" id="light"></img>
 		<div class="mobile-only">
-			<div id="dpadUp" class="gamepadButton"></div>
-			<div id="dpadDown" class="gamepadButton"></div>
-			<div id="dpadLeft" class="gamepadButton"></div>
-			<div id="dpadRight" class="gamepadButton"></div>
-			<div id="buttonA" class="gamepadButton"></div>
-			<div id="buttonB" class="gamepadButton"></div>
-			<div id="start" class="gamepadButton"></div>
-			<div id="select" class="gamepadButton"></div>
+			<div id="dpadUp" class="noSelect gamepadButton"></div>
+			<div id="dpadDown" class="noSelect gamepadButton"></div>
+			<div id="dpadLeft" class="noSelect gamepadButton"></div>
+			<div id="dpadRight" class="noSelect gamepadButton"></div>
+			<div id="buttonA" class="noSelect gamepadButton"></div>
+			<div id="buttonB" class="noSelect gamepadButton"></div>
+			<div id="start" class="noSelect gamepadButton"></div>
+			<div id="select" class="noSelect gamepadButton"></div>
 		</div>
 	</div>
 	<!-- Canvas is where the emulator displays after it loads (dynamic) -->
