@@ -56,8 +56,6 @@ this.Gui = this.Gui || {};
 	
 		var parentWidth = this._parent.width();
 		var parentHeight = this._parent.height();
-
-		console.log("parent: " + this._parent)
 		
 		var resizeType = 'keepAspectRatio';
 		

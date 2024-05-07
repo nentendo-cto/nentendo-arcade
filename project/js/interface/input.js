@@ -152,7 +152,6 @@ this.Gui = this.Gui || {};
 				(function (name) {
 					buttonElement.addEventListener('mousedown', function (event) {
 						console.log('button pressed ' + name);
-						// that._doButtonPress(name, true);
 						that._doKeyboardButtonPress(Number(name), true);
 					});
 					buttonElement.addEventListener('mouseup', function (event) {
@@ -161,7 +160,6 @@ this.Gui = this.Gui || {};
 					});
 					buttonElement.addEventListener('touchstart', function (event) {
 						console.log('touch pressed ' + name);
-						// that._doButtonPress(name, true);
 						that._doKeyboardButtonPress(Number(name), true);
 					});
 					buttonElement.addEventListener('touchend', function (event) {
@@ -172,8 +170,8 @@ this.Gui = this.Gui || {};
 			}
 		}
 		// keyboard support
-		window.addEventListener('keydown', function (event) { if (that._doKeyboardButtonPress(Number(event.key), true)) { event.preventDefault(); } }, false);
-		window.addEventListener('keyup', function (event) { if (that._doKeyboardButtonPress(Number(event.key), false)) { event.preventDefault(); } }, false);
+		window.addEventListener('keydown', function (event) { if (that._doKeyboardButtonPress(Number(event.keyCode), true)) { event.preventDefault(); } }, false);
+		window.addEventListener('keyup', function (event) { if (that._doKeyboardButtonPress(Number(event.keyCode), false)) { event.preventDefault(); } }, false);
 
 		this._gamepadsSupported = navigator['getGamepads'] !== undefined;
 
