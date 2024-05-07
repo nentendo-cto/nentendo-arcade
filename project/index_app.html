@@ -234,14 +234,14 @@
 			}
 
 			#container {
-			position: absolute;
-			top: 0;
-			left: 20.2%;
-			height: auto;
-			width: 57.5%;
-			padding: 1%;
-			margin-top: 20%;
-			background-color: rgb(82 82 93);
+				position: absolute;
+				top: 0;
+				left: 20.2%;
+				height: auto;
+				width: 57.5%;
+				padding: 1%;
+				margin-top: 20%;
+				background-color: rgb(82 82 93);
 			}
 		}
 	</style>
@@ -437,9 +437,9 @@
 
 	<!-- Mobile Content -->
 
-	<div id="controller" class="mobile-only">
+	<div id="controller" class="noSelect mobile-only">
 		<img src="images/NentMobile.png" class="noSelect mobile-only" alt="Game Controller" id="gameController"></img>
-		<img src="images/NentboyON.png" class="mobile-only" id="light"></img>
+		<img src="images/NentboyON.png" class="noSelect mobile-only" id="light"></img>
 		<div class="mobile-only">
 			<div id="dpadUp" class="noSelect gamepadButton"></div>
 			<div id="dpadDown" class="noSelect gamepadButton"></div>
@@ -452,17 +452,15 @@
 		</div>
 	</div>
 	<!-- Canvas is where the emulator displays after it loads (dynamic) -->
-	<div id="container">
+	<div id="container" class="noSelect">
 		<div id="canvasCenter">
 			<div id="canvasWrapper" class="wrapper"></div>
 		</div>
-		
 	</div>
 
 	<!-- pop up menu -->
 	<div id="popup1" class="overlay">
 		<div class="popup">
-
 			<div class="content">
 				<div id="infoPanel" class="infoPanel" style="color: white;background-color:black;font-size:x-large;">
 					<img src="images/logo.png" style="width: 40%; height: auto;"></img>
@@ -518,17 +516,17 @@
 		</div>
 	</div>
 	<a class="button" href="#popup1" style="position:absolute;top:2%;left:80%;">
-		<img class="mobile-only" src="images/PowerButton.png"
+		<img class="noSelect mobile-only" src="images/PowerButton.png"
 			style="width: 60%;background-color: white;border-radius:60px;">
-		<img class="desktop-only" src="images/PowerButton.png"
+		<img class="noSelect desktop-only" src="images/PowerButton.png"
 			style="width: 30%;background-color: white; border-radius:60px;justify-content: left;">
 	</a>
 
 
 	<script>
-		document.addEventListener('touchmove', function(event) {
+		document.addEventListener('touchmove', function (event) {
 			event.preventDefault();
-		}, { passive: false });	
+		}, { passive: false });
 	</script>
 
 	<!-- build:js js/nes.components.min.js -->

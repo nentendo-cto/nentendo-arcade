@@ -4,6 +4,7 @@
   "start_url": "/index_app.html",
   "source": "/",
   "display": "fullscreen",
+  "theme_color": "#000000",
   "background_color": "#000000",
   "icons": [
     {

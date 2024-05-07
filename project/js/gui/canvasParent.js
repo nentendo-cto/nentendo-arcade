@@ -39,6 +39,7 @@ this.Gui = this.Gui || {};
 			that._setPosition();
 		});
 		this._setPosition();
+		this._setSize();
 	};
 	
 	
