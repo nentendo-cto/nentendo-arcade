@@ -526,7 +526,9 @@
 
 
 	<script>
-
+		document.addEventListener('touchmove', function(event) {
+			event.preventDefault();
+		}, { passive: false });	
 	</script>
 
 	<!-- build:js js/nes.components.min.js -->
