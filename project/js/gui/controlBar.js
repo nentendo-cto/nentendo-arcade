@@ -48,7 +48,7 @@ this.Gui = this.Gui || {};
 		this._buttons = [];
 		
 		// primary buttons
-		this._addButton( "controlBar_loadRomButton", { primary: { label: "Open ROM", icon: "ui-icon-folder-open" }, click: function() { that._loadRomButtonClick(); } } );
+		// this._addButton( "controlBar_loadRomButton", { primary: { label: "Open ROM", icon: "ui-icon-folder-open" }, click: function() { that._loadRomButtonClick(); } } );
 		this._addButton( "controlBar_resetButton", { enabledWhenRomIsLoaded: true, primary: { label: "Reset", icon: "ui-icon-refresh" }, click: function() { that._onResetButtonClick(); } } );
 		this._playButton = this._addButton( "controlBar_playButton", { primary: { label: "Pause", icon: "ui-icon-pause" }, toggle: { label: "Play", icon: 'ui-icon-play' }, click: function() { that._onPlayButtonClick(); } } );
 		this._gameGenieButton = this._addButton( "controlBar_gameGenieButton", { enabledWhenRomIsLoaded: true, primary: { label: "Game Genie", icon: "ui-icon-star" }, click: function() { that._onGameGenieButtonClick(); } } );
