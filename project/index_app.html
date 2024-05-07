@@ -123,6 +123,22 @@
 			opacity: 1;
 		}
 
+		#content {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+		#controlBarWrapper {
+			position: absolute;
+			top: 0;
+			left: calc(25% - 30px);
+			width: 30px;
+			height: 20%;
+		}
+
 		.popup {
 			margin: 70px auto;
 			padding: 20px;
@@ -285,60 +301,63 @@
 	<div id="desktopBg" class="desktop-only"></div>
 
 
-	<div id="content" class="desktop-only" style="width:100%; height:100%;">
-		<div id="controlBar" class="controlBar" class="desktop-only">
-			<div id="debugBar" class="ui-widget-header ui-corner-all">
-				<button class="controlBarButton" id="debugControlBar_playOneFrameButton"></button>
-				<div class="controlBarSeperator"></div>
-				<button class="controlBarButton" id="debugControlBar_gameSpeedButton"></button>
-				<!--<button class="controlBarButton" id="debugControlBar_getFrameHashButton"></button>-->
-				<div class="controlBarSeperator"></div>
-				<span id="debugControlBar_encoding">
-					<input type="radio" id="debugControlBar_encodingNTSC" name="debugControlBar_encoding"
-						value="NTSC"><label for="debugControlBar_encodingNTSC">NTSC</label>
-					<input type="radio" id="debugControlBar_encodingPAL" name="debugControlBar_encoding"
-						value="PAL"><label for="debugControlBar_encodingPAL">PAL</label>
-				</span>
-				<div class="controlBarSeperator"></div>
-				<button class="controlBarButton" id="debugControlBar_selectTraceButton"></button>
-				<ul id="debugControlBar_traceMenu">
-					<li class="controlBarMenuButton" id="controlBar_cpuTraceParent"><input type="checkbox"
-							id="controlBar_cpuTraceButton"><label for="controlBar_cpuTraceButton">CPU</label></li>
-					<li class="controlBarMenuButton" id="controlBar_cpuInstructionsTraceParent"><input type="checkbox"
-							id="controlBar_cpuInstructionsTraceButton"><label
-							for="controlBar_cpuInstructionsTraceButton">CPU Instructions</label></li>
-					<li class="controlBarMenuButton" id="controlBar_ppuTraceParent"><input type="checkbox"
-							id="controlBar_ppuTraceButton"><label for="controlBar_ppuTraceButton">PPU</label></li>
-					<li class="controlBarMenuButton" id="controlBar_mapperTraceParent"><input type="checkbox"
-							id="controlBar_mapperTraceButton"><label for="controlBar_mapperTraceButton">Mapper</label>
-					</li>
-					<li class="controlBarMenuButton" id="controlBar_allTraceParent"><input type="checkbox"
-							id="controlBar_allTraceButton"><label for="controlBar_allTraceButton">All</label></li>
-				</ul>
-				<button class="controlBarButton" id="debugControlBar_traceButton"></button>
+	<div id="content" class="desktop-only">
+		<div id="controlBarWrapper">
+			<div id="controlBar" class="desktop-only controlBar">
+				<div id="debugBar" class="ui-widget-header ui-corner-all">
+					<button class="controlBarButton" id="debugControlBar_playOneFrameButton"></button>
+					<div class="controlBarSeperator"></div>
+					<button class="controlBarButton" id="debugControlBar_gameSpeedButton"></button>
+					<!--<button class="controlBarButton" id="debugControlBar_getFrameHashButton"></button>-->
+					<div class="controlBarSeperator"></div>
+					<span id="debugControlBar_encoding">
+						<input type="radio" id="debugControlBar_encodingNTSC" name="debugControlBar_encoding"
+							value="NTSC"><label for="debugControlBar_encodingNTSC">NTSC</label>
+						<input type="radio" id="debugControlBar_encodingPAL" name="debugControlBar_encoding"
+							value="PAL"><label for="debugControlBar_encodingPAL">PAL</label>
+					</span>
+					<div class="controlBarSeperator"></div>
+					<button class="controlBarButton" id="debugControlBar_selectTraceButton"></button>
+					<ul id="debugControlBar_traceMenu">
+						<li class="controlBarMenuButton" id="controlBar_cpuTraceParent"><input type="checkbox"
+								id="controlBar_cpuTraceButton"><label for="controlBar_cpuTraceButton">CPU</label></li>
+						<li class="controlBarMenuButton" id="controlBar_cpuInstructionsTraceParent"><input type="checkbox"
+								id="controlBar_cpuInstructionsTraceButton"><label
+								for="controlBar_cpuInstructionsTraceButton">CPU Instructions</label></li>
+						<li class="controlBarMenuButton" id="controlBar_ppuTraceParent"><input type="checkbox"
+								id="controlBar_ppuTraceButton"><label for="controlBar_ppuTraceButton">PPU</label></li>
+						<li class="controlBarMenuButton" id="controlBar_mapperTraceParent"><input type="checkbox"
+								id="controlBar_mapperTraceButton"><label for="controlBar_mapperTraceButton">Mapper</label>
+						</li>
+						<li class="controlBarMenuButton" id="controlBar_allTraceParent"><input type="checkbox"
+								id="controlBar_allTraceButton"><label for="controlBar_allTraceButton">All</label></li>
+					</ul>
+					<button class="controlBarButton" id="debugControlBar_traceButton"></button>
+				</div>
+				<div id="normalBar" class="ui-widget-header ui-corner-all">
+					<button class="controlBarButton" id="controlBar_loadRomButton"></button>
+					<div class="controlBarSeperator"></div>
+					<button class="controlBarButton" id="controlBar_resetButton"></button>
+					<div class="controlBarSeperator"></div>
+					<button class="controlBarButton" id="controlBar_playButton"></button>
+					<div class="controlBarSeperator"></div>
+					<button class="controlBarButton" id="controlBar_soundButton"></button>
+					<button class="controlBarButton" id="controlBar_screenshotButton"></button>
+					<div class="controlBarSeperator"></div>
+					<button class="controlBarButton" id="controlBar_quickSaveButton"></button>
+					<button class="controlBarButton" id="controlBar_quickLoadButton"></button>
+					<div class="controlBarSeperator"></div>
+					<input class="controlBarButton" type="checkbox" id="controlBar_debugButton"><label
+						for="controlBar_debugButton"></label>
+					<div class="controlBarSeperator"></div>
+					<button class="controlBarButton" id="controlBar_keyboardRemap"></button>
+					<div class="controlBarSeperator"></div>
+					<button class="controlBarButton" id="controlBar_gameGenieButton"></button>
+					<button class="controlBarButton" id="controlBar_errorDisplay"></button>
+				</div>
 			</div>
-			<div id="normalBar" class="ui-widget-header ui-corner-all">
-				<button class="controlBarButton" id="controlBar_loadRomButton"></button>
-				<div class="controlBarSeperator"></div>
-				<button class="controlBarButton" id="controlBar_resetButton"></button>
-				<div class="controlBarSeperator"></div>
-				<button class="controlBarButton" id="controlBar_playButton"></button>
-				<div class="controlBarSeperator"></div>
-				<button class="controlBarButton" id="controlBar_soundButton"></button>
-				<button class="controlBarButton" id="controlBar_screenshotButton"></button>
-				<div class="controlBarSeperator"></div>
-				<button class="controlBarButton" id="controlBar_quickSaveButton"></button>
-				<button class="controlBarButton" id="controlBar_quickLoadButton"></button>
-				<div class="controlBarSeperator"></div>
-				<input class="controlBarButton" type="checkbox" id="controlBar_debugButton"><label
-					for="controlBar_debugButton"></label>
-				<div class="controlBarSeperator"></div>
-				<button class="controlBarButton" id="controlBar_keyboardRemap"></button>
-				<div class="controlBarSeperator"></div>
-				<button class="controlBarButton" id="controlBar_gameGenieButton"></button>
-				<button class="controlBarButton" id="controlBar_errorDisplay"></button>
-			</div>
-		</div>
+	    </div>
+		
 		<div id="controlBar_volumeSlider"></div>
 		<div id="controlBar_alertMessage"></div>
 		<div id="debugControlBar_gameSpeedSlider"></div>

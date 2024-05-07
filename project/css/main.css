@@ -26,12 +26,15 @@
 	#loadStateDialog {
 		display: none;
 	}
+
+	#normalBar {
+		display: flex;
+		flex-direction: column;
+	}
 	
 	.controlBar {
 		visibility: hidden;
-		display: inline-block;
-		position:absolute;
-		bottom:30px;
+		display: block;
 	}
 	
 	.controlBarSeperator {

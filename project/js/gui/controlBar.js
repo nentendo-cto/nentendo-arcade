@@ -40,6 +40,7 @@ this.Gui = this.Gui || {};
 		this._app.connect( 'romLoadFailure', function( reason ) { that._onRomLoadFailure( reason ); } );
 		
 		this._element = $( "#controlBar" );
+		this._parent = $("#controlBarWrapper");
 		
 		this._debugBar = $( "#debugBar" );
 		this._debugBar.hide();
@@ -361,7 +362,12 @@ this.Gui = this.Gui || {};
 	
 	
 	ControlBar.prototype._setPosition = function() {
-		this._element.position( { 'of': $( window ), 'my': "bottom", 'at': "bottom" } );
+		this._element.css({
+			'position': 'absolute',
+			'top': '0',
+			'left': '0'
+		});
+		//this._element.position( { 'of': this._parent, 'my': "top left", 'at': "top left" } );
 	};
 	
 	
