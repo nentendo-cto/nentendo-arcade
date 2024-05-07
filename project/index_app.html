@@ -163,10 +163,36 @@
 			overflow: auto;
 		}
 
+		/* Needs fixing on desktop view */
 		#container {
 			position: absolute;
 			top: 0;
-			height:35vh;
+			left: 20.2%;
+			height: auto;
+			width: 57.5%;
+			padding: 1%;
+			margin-top: 35.5%;
+			background-color: rgba(0, 0, 0, 50%);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		/*
+			New CanvasWrapper parent. Used for centering canvas
+		*/
+		#canvasCenter {
+			width: 100%;
+			height: 100%;
+		}
+
+		#canvasWrapper {
+			width: 100%;
+			height: 100%;
+		}
+
+		canvas {
+			width: 100%;
 		}
 
 		.noSelect {
@@ -194,10 +220,6 @@
 			/* Show by default */
 		}
 
-		canvas {
-			max-width: 73%;
-		}
-
 		/* Media query for mobile devices */
 		@media screen and (max-width: 768px) {
 			.mobile-only {
@@ -208,6 +230,17 @@
 			.desktop-only {
 				display: none;
 				/* Hide on mobile */
+			}
+
+			#container {
+			position: absolute;
+			top: 0;
+			left: 20.2%;
+			height: auto;
+			width: 57.5%;
+			padding: 1%;
+			margin-top: 20%;
+			background-color: rgb(82 82 93);
 			}
 		}
 	</style>
@@ -419,7 +452,10 @@
 	</div>
 	<!-- Canvas is where the emulator displays after it loads (dynamic) -->
 	<div id="container">
-		<div id="canvasWrapper" class="wrapper"></div>
+		<div id="canvasCenter">
+			<div id="canvasWrapper" class="wrapper"></div>
+		</div>
+		
 	</div>
 
 	<!-- pop up menu -->
