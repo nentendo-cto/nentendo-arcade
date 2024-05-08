@@ -76,8 +76,8 @@ this.Gui = this.Gui || {};
 	CanvasParent.prototype._setPosition = function() {
 		this._element.position( { 
 			'of': this._parent, 
-			'my': "left top", 
-			'at': "left top" } );
+			'my': "center top", 
+			'at': "center top" } );
 	};
 	
 	

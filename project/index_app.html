@@ -221,6 +221,12 @@
 			outline: none !important;
 		}
 
+		#powerButton {
+			position: absolute;
+			top: 2%;
+			left: 80%;
+		}
+
 		/* Default styles for both elements */
 		.mobile-only {
 			display: none;
@@ -253,6 +259,28 @@
 				padding: 1%;
 				margin-top: 20%;
 				background-color: rgb(82 82 93);
+			}
+		}
+
+		@media screen and (min-width: 1440px) {
+
+			#canvasWrapper {
+				/* width: 65%; */
+				margin-left: 20%;
+			}
+		}
+
+		@media screen and (min-width: 1700px) {
+
+			#canvasWrapper {
+				width: 80%;
+				/* margin-left: 60%; */
+			}
+
+			#powerButton {
+				position: absolute;
+				top: 2%;
+				left: 76%;
 			}
 		}
 	</style>
@@ -321,13 +349,14 @@
 					<ul id="debugControlBar_traceMenu">
 						<li class="controlBarMenuButton" id="controlBar_cpuTraceParent"><input type="checkbox"
 								id="controlBar_cpuTraceButton"><label for="controlBar_cpuTraceButton">CPU</label></li>
-						<li class="controlBarMenuButton" id="controlBar_cpuInstructionsTraceParent"><input type="checkbox"
-								id="controlBar_cpuInstructionsTraceButton"><label
+						<li class="controlBarMenuButton" id="controlBar_cpuInstructionsTraceParent"><input
+								type="checkbox" id="controlBar_cpuInstructionsTraceButton"><label
 								for="controlBar_cpuInstructionsTraceButton">CPU Instructions</label></li>
 						<li class="controlBarMenuButton" id="controlBar_ppuTraceParent"><input type="checkbox"
 								id="controlBar_ppuTraceButton"><label for="controlBar_ppuTraceButton">PPU</label></li>
 						<li class="controlBarMenuButton" id="controlBar_mapperTraceParent"><input type="checkbox"
-								id="controlBar_mapperTraceButton"><label for="controlBar_mapperTraceButton">Mapper</label>
+								id="controlBar_mapperTraceButton"><label
+								for="controlBar_mapperTraceButton">Mapper</label>
 						</li>
 						<li class="controlBarMenuButton" id="controlBar_allTraceParent"><input type="checkbox"
 								id="controlBar_allTraceButton"><label for="controlBar_allTraceButton">All</label></li>
@@ -356,8 +385,8 @@
 					<button class="controlBarButton" id="controlBar_errorDisplay"></button>
 				</div>
 			</div>
-	    </div>
-		
+		</div>
+
 		<div id="controlBar_volumeSlider"></div>
 		<div id="controlBar_alertMessage"></div>
 		<div id="debugControlBar_gameSpeedSlider"></div>
@@ -498,11 +527,14 @@
 								<option value="roms/Galaga (U).nes.zip">Gelega</option>
 								<option value="roms/Super Mario Bros (E).nes.zip">Sooper Merio Bros</option>
 								<option value="roms/Super Mario Bros 3 (U) (PRG 0).nes.zip">Sooper Merio Bros 3</option>
-								<option value="roms/Legend of Zelda, The (U) (PRG 0).nes.zip">The Legend of Zeldey</option>
-								<option value="roms/Zelda 2 - The Adventure of Link (U).nes.zip">Zeldey 2 - Adventure of Lenk</option>
+								<option value="roms/Legend of Zelda, The (U) (PRG 0).nes.zip">The Legend of Zeldey
+								</option>
+								<option value="roms/Zelda 2 - The Adventure of Link (U).nes.zip">Zeldey 2 - Adventure of
+									Lenk</option>
 								<option value="roms/Metroid (U).nes.zip">Meetroid</option>
 								<option value="roms/Mega Man (U).nes.zip">Megu Men</option>
-								<option value="roms/Mike Tyson's Punch-Out!! (U).nes.zip">Meke Tysen's Punch-Out!!</option>
+								<option value="roms/Mike Tyson's Punch-Out!! (U).nes.zip">Meke Tysen's Punch-Out!!
+								</option>
 								<option value="roms/Snake Rattle'n Roll (U).nes.zip">Snek Rattle'n Reel</option>
 							</datalist>
 						</select>
@@ -525,13 +557,14 @@
 							class="buy-button"><img src="images/BuyButton.png" class="popup-button"></a>
 					</p>
 					<p class="popup-button-wrapper">
-						<a target="_blank" href="https://t.me/NentendoCTO" class="buy-button"><img src="images/TelegramButton.png" class="popup-button"></a>
+						<a target="_blank" href="https://t.me/NentendoCTO" class="buy-button"><img
+								src="images/TelegramButton.png" class="popup-button"></a>
 					</p>
 				</div>
 			</div>
 		</div>
 	</div>
-	<a class="button" href="#popup1" style="position:absolute;top:2%;left:80%;">
+	<a class="button" href="#popup1" id="powerButton">
 		<img class="noSelect mobile-only" src="images/PowerButton.png"
 			style="width: 60%;background-color: white;border-radius:60px;">
 		<img class="noSelect desktop-only" src="images/PowerButton.png"
