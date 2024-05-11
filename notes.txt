@@ -1,0 +1,1 @@
+bower_components/mixpanel/package.json should be     "build-dist": "set DIST=1 ./build.sh",

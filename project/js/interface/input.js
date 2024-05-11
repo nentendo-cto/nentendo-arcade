@@ -151,19 +151,19 @@ this.Gui = this.Gui || {};
 				var buttonElement = document.getElementById(buttonId);
 				(function (name) {
 					buttonElement.addEventListener('mousedown', function (event) {
-						console.log('button pressed ' + name);
+						//console.log('button pressed ' + name);
 						that._doKeyboardButtonPress(Number(name), true);
 					});
 					buttonElement.addEventListener('mouseup', function (event) {
-						console.log('button released ' + name);
+						//console.log('button released ' + name);
 						that._doKeyboardButtonPress(Number(name), false);
 					});
 					buttonElement.addEventListener('touchstart', function (event) {
-						console.log('touch pressed ' + name);
+						//console.log('touch pressed ' + name);
 						that._doKeyboardButtonPress(Number(name), true);
 					});
 					buttonElement.addEventListener('touchend', function (event) {
-						console.log('touch released ' + name);
+						//console.log('touch released ' + name);
 						that._doKeyboardButtonPress(Number(name), false);
 					});
 				})(buttonName); // Immediately invoke the function with the current buttonName

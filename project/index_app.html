@@ -289,7 +289,7 @@
 
 	<!-- PWA -->
 	<!-- Enables safari home app full screen -->
-	<link rel="manifest" href="/manifest.json">
+	<link rel="manifest" href="manifest.json">
 
 	<!-- web & app icons -->
 	<link rel="icon" type="image/png" sizes="16x16" rel="noopener" target="_blank" href="images/MarioICON(16x16).png">
@@ -314,20 +314,15 @@
 <!-- onunload="" prevents firefox caching javascript files -->
 
 <body onunload="" class="noSelect" id="body" style="background-color: black;">
-	<div id="fb-root"></div>
-	<!-- facebook api -->
-	<script>(function (d, s, id) {
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id)) return;
-			js = d.createElement(s); js.id = id;
-			js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.0&appId=310800822454793";
-			fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));</script>
+	<script src="bower_components/mixpanel/mixpanel-jslib-snippet.min.js"></script>
+
 
 	<!-- Desktop Content -->
 
 	<div id="desktopBg" class="desktop-only"></div>
-
+	<script>
+		mixpanel.init('0274d77895a7bb80dd6683709df308ea', { track_pageview: true });
+	</script>
 
 	<div id="content" class="desktop-only">
 		<div id="controlBarWrapper">
@@ -521,7 +516,8 @@
 						<select type="text" list="gamesList" id="loadGameComboBox" class="select-list">
 							<datalist id="gamesList">
 								<option value="">Select...</option>
-								<option value="roms/Castlevania 3 - Dracula's Curse (U).nes.zip">Castleveinya 3 - Dregula's Blurse(NEW!)</option>
+								<option value="roms/Castlevania 3 - Dracula's Curse (U).nes.zip">Castleveinya 3 -
+									Dregula's Blurse(NEW!)</option>
 								<option value="roms/Excitebike (E).nes.zip">ExceetBeek (NEW!)</option>
 								<option value="roms/Battletoads (U).nes.zip">BattleNENTs</option>
 								<option value="roms/Contra (U).nes.zip">Contre</option>
@@ -537,7 +533,8 @@
 									Lenk</option>
 								<option value="roms/Metroid (U).nes.zip">Meetroid</option>
 								<option value="roms/Mega Man (U).nes.zip">Megu Men</option>
-								<option value="roms/Mike Tyson's Punch-Out!! (U) (PRG 0).nes.zip">Meke Tysen's Punch-Out!!
+								<option value="roms/Mike Tyson's Punch-Out!! (U) (PRG 0).nes.zip">Meke Tysen's
+									Punch-Out!!
 								</option>
 								<option value="roms/Snake Rattle'n Roll (U).nes.zip">Snek Rattle'n Reel</option>
 							</datalist>
@@ -582,8 +579,25 @@
 		}, { passive: false });
 
 		document.getElementById("loadGameComboBox").addEventListener("change", function (event) {
-			console.log("Selected value: " + event.target.value);
-			// Do something when the selection changes
+			const gameFile = event.target.value;
+			//console.log("Selected value: " + gameFile);
+			const isMobileMediaQuery = window.matchMedia('(max-width: 768px)');
+			var viewport = "";
+
+			if (isMobileMediaQuery.matches) {
+				//console.log("Mobile device detected");
+				viewport = "Nentboy";
+			} else {
+				//console.log("Desktop device detected");
+				viewport = "NentES";
+			}
+
+			mixpanel.init('0274d77895a7bb80dd6683709df308ea');
+			mixpanel.track('Game Selected', {
+				'Game File Name': gameFile,
+				'Console': viewport
+			});
+
 			$('.close')[0].click();
 		});
 

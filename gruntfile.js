@@ -67,6 +67,7 @@ module.exports = function(grunt) {
 				files: [
 					{ expand: true, nonull: true, cwd: 'project', src: ['**.html', '**.json'], dest: rootOutput },
 					{ expand: true, nonull: true, cwd: 'bower_components/jquery-ui/themes/smoothness/images', src: ['**'], dest: path.join( rootOutput, 'css/images' ) },
+					{ expand: true, nonull: true, cwd: 'bower_components/mixpanel/dist', src: ['**'], dest: path.join( rootOutput, 'bower_components/mixpanel' ) },
 					{ expand: true, nonull: true, cwd: 'project/js/db', src: ['**'], dest: path.join( rootOutput, 'js/db' ) },
 					{ expand: true, nonull: true, cwd: 'project/shaders', src: ['**'], dest: path.join( rootOutput, 'shaders' ) },
 					{ expand: true, nonull: true, cwd: 'project/images', src: ['**'], dest: path.join( rootOutput, 'images' ) },
@@ -101,13 +102,6 @@ module.exports = function(grunt) {
 				options: closureOptionsNesComponentsJs
 			}
 		},
-		// uglify: {
-			// options: {
-				// banner: "/* Nesulator : Pete Ward 2014 : peteward44@gmail.com */\n",
-				// mangle: false,
-				// compress: false
-			// }
-		// },
 		useminPrepare: {
 			html: 'project/index_app.html',
 			options: {
@@ -123,7 +117,15 @@ module.exports = function(grunt) {
 		},
 		usemin: {
 			html: outputHtml
-		}
+		},
+        shell: {
+            mixpanel: {
+                command: 'cd bower_components/mixpanel && npm install && npm run build-dist'
+            },
+			rootDir: {
+				command: 'cd ../..'
+			}
+        }
 	});
 	
 	grunt.registerMultiTask( 'replaceDebugMethods', 'Replaces debug functions', function() {
@@ -178,7 +180,11 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
 	grunt.loadNpmTasks( 'grunt-contrib-rename' );
 	grunt.loadNpmTasks( 'grunt-usemin' );
+	grunt.loadNpmTasks('grunt-shell');
+
 	grunt.registerTask( 'default', [
+		'shell:mixpanel',
+		'shell:rootDir',
 		'copy:main',
 		'useminPrepare',
 		'concat',
